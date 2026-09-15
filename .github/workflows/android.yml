@@ -1,35 +1,24 @@
-name: Build Android APK
-
-on:
-  workflow_dispatch:
-  push:
-    paths:
-      - 'android/**'
-      - '.github/workflows/android.yml'
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: android
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
-
-      - uses: gradle/actions/setup-gradle@v4
-
-      - name: Build APK
-        run: gradle assembleDebug
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: MyAIAssistant-V4-debug
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+- name: Unzip project if a zip is present at repo root
+        run: |
+          shopt -s nullglob
+          zips=(*.zip)
+          if [ ${#zips[@]} -gt 0 ]; then
+            echo "Found ${zips[0]}, extracting..."
+            unzip -o "${zips[0]}" -d _extracted
+            # If everything landed inside one single nested folder, move it up
+            entries=(_extracted/*/)
+            if [ ${#entries[@]} -eq 1 ] && [ -d "${entries[0]}" ]; then
+              shopt -u nullglob
+              mv "${entries[0]}"* .
+              mv "${entries[0]}".[!.]* . 2>/dev/null || true
+            else
+              shopt -u nullglob
+              mv _extracted/* .
+              mv _extracted/.[!.]* . 2>/dev/null || true
+            fi
+            rm -rf _extracted
+          else
+            echo "No zip found at repo root, assuming files are already unpacked."
+          fi
+          echo "--- Repo root now contains: ---"
+          ls -la
