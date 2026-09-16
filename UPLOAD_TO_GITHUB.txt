@@ -1,0 +1,11 @@
+MyAIAssistantV4 Web/PWA — GitHub upload package
+
+IMPORTANT:
+1. Extract this ZIP on your phone/computer.
+2. In GitHub, open your repository.
+3. Tap Add file -> Upload files.
+4. Select ALL extracted files/folders, including .github.
+5. Commit changes.
+6. GitHub Actions will deploy the PWA to GitHub Pages.
+
+Do NOT upload any OpenAI API key. The frontend does not contain an API key.

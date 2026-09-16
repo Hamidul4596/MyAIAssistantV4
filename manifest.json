@@ -1,0 +1,10 @@
+{
+  "name":"My AI Assistant V4",
+  "short_name":"My AI",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#f3f4f6",
+  "theme_color":"#111827",
+  "description":"Phone-first Bengali/English AI assistant",
+  "icons":[]
+}

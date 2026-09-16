@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#111827">
+  <meta name="description" content="My AI Assistant V4 — phone-first AI assistant">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <title>My AI Assistant V4</title>
+</head>
+<body>
+<main class="app">
+  <header class="topbar">
+    <div><h1>My AI Assistant <span>V4</span></h1><p>বাংলা বা English-এ বলুন বা লিখুন</p></div>
+    <button id="installBtn" class="ghost hidden">Install</button>
+  </header>
+
+  <section class="card settings">
+    <label for="backendUrl">Backend URL</label>
+    <div class="urlrow"><input id="backendUrl" type="url" placeholder="https://your-backend.example.com"><button id="saveUrl">Save</button></div>
+    <small>AI chat-এর জন্য deployed backend URL দিন। OpenAI API key এখানে দেবেন না।</small>
+    <div id="status" class="status">Local commands ready</div>
+  </section>
+
+  <section id="chat" class="card chat" aria-live="polite"></section>
+
+  <section id="confirm" class="card confirm hidden">
+    <strong>এই sensitive কাজটি চালাবেন?</strong>
+    <p id="confirmText"></p>
+    <div class="actions"><button id="confirmYes">হ্যাঁ</button><button id="confirmNo" class="secondary">না</button></div>
+  </section>
+
+  <section class="card composer">
+    <textarea id="input" rows="2" placeholder="যেমন: YouTube খুলো / search Bangladesh jobs"></textarea>
+    <div class="actions wrap">
+      <button id="voice">🎙 Voice</button><button id="send">Send</button>
+      <button id="speakLast" class="secondary">🔊 Speak</button>
+      <button id="kill" class="danger">Kill switch: OFF</button>
+    </div>
+  </section>
+
+  <section class="card quick">
+    <strong>Quick commands</strong>
+    <div class="chips">
+      <button data-command="YouTube খুলুন">YouTube</button>
+      <button data-command="Chrome খুলুন">Chrome</button>
+      <button data-command="Gmail খুলুন">Gmail</button>
+      <button data-command="Google search Bangladesh jobs">Search</button>
+      <button data-command="এখন সময় কত">সময়</button>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
